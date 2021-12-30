@@ -1,0 +1,31 @@
+﻿@using PustokProje.Models;
+@model Feature;
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <form method="post" asp-action="edit">
+                <div class="form-group">
+                    <label asp-for="Title">Title</label>
+                    <input type="text" class="form-control" asp-for="Title" placeholder="Enter title">
+
+                    <label asp-for="Text">Description</label>
+                    <input type="text" class="form-control" asp-for="Text" placeholder="Enter description">
+
+                    <label asp-for="Icon">Icon</label>
+                    <input type="text" class="form-control" asp-for="Icon" placeholder="Enter icon">
+                </div>
+
+
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @await Html.PartialAsync("_ValidationScriptPartial")
+}

@@ -1,0 +1,9 @@
+﻿@using PustokProje.Models;
+@model List<Genre>
+
+<select name="genre" id="genres">
+    @foreach (var item in Model)
+    {
+        <option value="@item.Name">@item.Name</option>
+    }
+</select>

@@ -1,0 +1,27 @@
+﻿@using PustokProje.Models
+@model Author;
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <form method="post" asp-action="edit">
+                <div class="form-group">
+                    <label asp-for="FullName">Name</label>
+                    <input type="text" class="form-control" asp-for="FullName" placeholder="Enter author name">
+                    <span asp-validation-for="FullName"></span>
+                </div>
+
+
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @await Html.PartialAsync("_ValidationScriptPartial")
+}

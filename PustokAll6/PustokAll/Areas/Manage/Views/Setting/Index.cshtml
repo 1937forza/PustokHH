@@ -1,0 +1,85 @@
+﻿@using PustokProje.Models;
+@model List<Settings>
+
+@{
+    ViewData["Title"] = "Index";
+    int count = (ViewBag.SelectedPage - 1) * 2;
+    double totalPage = ViewBag.TotalPage;
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="title">
+                <h1 style="display: inline-block;">Setting</h1>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="table">
+
+
+                <table class="table" style="color: white;">
+                    <thead class="bg-primary">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Key</th>
+                            <th scope="col">Value</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-gradient-primary">
+                        @foreach (var item in Model)
+                        {
+
+                            count++;
+                            <tr>
+                                <th scope="row">@count</th>
+                                <td>@item.Key</td>
+                                <td>@item.Value</td>
+                                <td class="d-flex justify-content-end">
+                                    <a class="bg-success" asp-controller="setting" asp-action="edit" asp-route-id="@item.Id">
+                                        <span>Edit <i class="far fa-edit ps-1"></i></span>
+                                    </a>
+                                    
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="setting" asp-action="index" asp-route-page="@(ViewBag.SelectedPage - 1)" tabindex="-1">Previous</a>
+                    </li>
+
+
+
+                    @for (int i = (ViewBag.SelectedPage == 1 ? 1 : ViewBag.SelectedPage - 1); i < (ViewBag.SelectedPage == totalPage ? totalPage + 1 : ViewBag.SelectedPage + 2); i++)
+                    {
+                        <li class="page-item @(i == ViewBag.SelectedPage ? "active" : "")">
+                            <a class="page-link" asp-controller="setting" asp-action="index" asp-route-page="@i">@i</a>
+                        </li>
+                    }
+
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="setting" asp-action="index" asp-route-page="@(ViewBag.SelectedPage + 1)">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
